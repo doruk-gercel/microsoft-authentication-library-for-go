@@ -11,7 +11,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/fake"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/fake"
 )
 
 func fakeBrowserOpenURL(authURL string) error {

@@ -26,9 +26,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/internal/grant"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/internal/grant"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust"
 	"github.com/golang-jwt/jwt"
 	"github.com/google/uuid"
 )

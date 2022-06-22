@@ -9,11 +9,11 @@ import (
 	"fmt"
 	"time"
 
-	internalTime "github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/json/types/time"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/accesstokens"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust/defs"
+	internalTime "github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/json/types/time"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/accesstokens"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust/defs"
 )
 
 // ResolveEndpoints is a fake implementation of the oauth.resolveEndpointer interface.

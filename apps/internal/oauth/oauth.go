@@ -10,12 +10,12 @@ import (
 	"io/ioutil"
 	"time"
 
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/errors"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/accesstokens"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust/defs"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/errors"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/accesstokens"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust/defs"
 )
 
 // ResolveEndpointer contains the methods for resolving authority endpoints.

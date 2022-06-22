@@ -11,10 +11,10 @@ import (
 	"testing"
 	"time"
 
-	internalTime "github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/json/types/time"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/fake"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/accesstokens"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
+	internalTime "github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/json/types/time"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/fake"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/accesstokens"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
 )
 
 func TestCertFromPEM(t *testing.T) {

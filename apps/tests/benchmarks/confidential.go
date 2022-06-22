@@ -13,12 +13,12 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/base"
-	internalTime "github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/json/types/time"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/fake"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/accesstokens"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/base"
+	internalTime "github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/json/types/time"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/fake"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/accesstokens"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
 )
 
 const accessToken = "fake_token"

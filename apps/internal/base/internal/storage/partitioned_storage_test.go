@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/accesstokens"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/shared"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/accesstokens"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/internal/shared"
 	"github.com/kylelemons/godebug/pretty"
 )
 

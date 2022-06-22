@@ -9,7 +9,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/confidential"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/confidential"
 )
 
 func acquireTokenClientCertificate() {

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/confidential"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/confidential"
 )
 
 func acquireTokenClientSecret() {

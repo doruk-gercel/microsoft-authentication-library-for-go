@@ -14,9 +14,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/confidential"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/errors"
-	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/public"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/confidential"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/errors"
+	"github.com/doruk-gercel/microsoft-authentication-library-for-go/apps/public"
 )
 
 const (
