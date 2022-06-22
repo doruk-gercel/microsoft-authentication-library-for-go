@@ -43,6 +43,28 @@ type partitionedManager interface {
 	Write(authParameters authority.AuthParams, tokenResponse accesstokens.TokenResponse) (shared.Account, error)
 }
 
+type Parameters struct {
+	HomeAccountID    string
+	Env              string
+	ClientID         string
+	Username         string
+	LocalAccountID   string
+	Authority        string
+	AuthorityType    string
+	Realm            string
+	PreferedUsername string
+
+	CachedAt          time.Time
+	ExpiresOn         time.Time
+	ExtendedExpiresOn time.Time
+
+	IdToken      string
+	RefreshToken string
+	AccessToken  string
+
+	Scopes []string
+}
+
 type noopCacheAccessor struct{}
 
 func (n noopCacheAccessor) Replace(cache cache.Unmarshaler, key string) {}
@@ -257,6 +279,42 @@ func (b Client) AcquireTokenSilent(ctx context.Context, silent AcquireTokenSilen
 		if err != nil {
 			return AuthResult{}, err
 		}
+	}
+
+	result, err := AuthResultFromStorage(storageTokenResponse)
+	if err != nil {
+		if reflect.ValueOf(storageTokenResponse.RefreshToken).IsZero() {
+			return AuthResult{}, errors.New("no refresh token found")
+		}
+
+		var cc *accesstokens.Credential
+		if silent.RequestType == accesstokens.ATConfidential {
+			cc = silent.Credential
+		}
+
+		token, err := b.Token.Refresh(ctx, silent.RequestType, b.AuthParams, cc, storageTokenResponse.RefreshToken)
+		if err != nil {
+			return AuthResult{}, err
+		}
+
+		return b.AuthResultFromToken(ctx, authParams, token, true)
+	}
+	return result, nil
+}
+
+func (b *Client) AcquireTokenSilentNoCach(ctx context.Context, silent AcquireTokenSilentParameters, r Parameters) (AuthResult, error) {
+
+	authParams := b.AuthParams // This is a copy, as we dont' have a pointer receiver and authParams is not a pointer.
+	authParams.Scopes = silent.Scopes
+	authParams.HomeaccountID = silent.Account.HomeAccountID
+	authParams.AuthorizationType = silent.AuthorizationType
+	authParams.UserAssertion = silent.UserAssertion
+
+	storageTokenResponse := storage.TokenResponse{
+		RefreshToken: accesstokens.NewRefreshToken(r.HomeAccountID, r.Env, r.ClientID, r.RefreshToken, ""),
+		IDToken:      storage.NewIDToken(r.HomeAccountID, r.Env, r.Realm, r.ClientID, r.IdToken),
+		AccessToken:  storage.NewAccessToken(r.HomeAccountID, r.Env, r.Realm, r.ClientID, r.CachedAt, r.ExpiresOn, r.ExtendedExpiresOn, strings.Join(r.Scopes, " "), r.AccessToken),
+		Account:      shared.NewAccount(r.HomeAccountID, r.Env, r.Realm, r.LocalAccountID, r.AuthorityType, r.Username),
 	}
 
 	result, err := AuthResultFromStorage(storageTokenResponse)

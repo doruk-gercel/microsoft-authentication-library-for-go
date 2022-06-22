@@ -27,6 +27,7 @@ import (
 	"fmt"
 	"net/url"
 	"strconv"
+	"time"
 
 	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/cache"
 	"github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/base"
@@ -59,6 +60,30 @@ type Options struct {
 	// The HTTP client used for making requests.
 	// It defaults to a shared http.Client.
 	HTTPClient ops.HTTPClient
+}
+
+type Parameters struct {
+	HomeAccountID    string
+	Env              string
+	ClientID         string
+	Username         string
+	LocalAccountID   string
+	Authority        string
+	AuthorityType    string
+	Realm            string
+	PreferedUsername string
+
+	CachedAt          time.Time
+	ExpiresOn         time.Time
+	ExtendedExpiresOn time.Time
+
+	IdToken      string
+	RefreshToken string
+	AccessToken  string
+
+	UserAccount Account
+
+	Scopes []string
 }
 
 func (p *Options) validate() error {
@@ -160,6 +185,45 @@ func (pca Client) AcquireTokenSilent(ctx context.Context, scopes []string, optio
 	}
 
 	return pca.base.AcquireTokenSilent(ctx, silentParameters)
+}
+
+// AcquireTokenSilentNoCach acquires a token from either the cache or using a refresh token without cach.
+func (pca Client) AcquireTokenSilentNoCach(ctx context.Context, reqValue Parameters, options ...AcquireTokenSilentOption) (AuthResult, error) {
+	opts := AcquireTokenSilentOptions{}
+	for _, o := range options {
+		o(&opts)
+	}
+
+	silentParameters := base.AcquireTokenSilentParameters{
+		Scopes:      reqValue.Scopes,
+		Account:     opts.Account,
+		RequestType: accesstokens.ATPublic,
+		IsAppCache:  false,
+	}
+
+	baseReqValues := base.Parameters{
+		HomeAccountID:    reqValue.HomeAccountID,
+		Env:              reqValue.Env,
+		Username:         reqValue.Username,
+		ClientID:         reqValue.ClientID,
+		LocalAccountID:   reqValue.LocalAccountID,
+		Authority:        reqValue.Authority,
+		AuthorityType:    reqValue.AuthorityType,
+		Realm:            reqValue.Realm,
+		PreferedUsername: reqValue.PreferedUsername,
+
+		CachedAt:          reqValue.CachedAt,
+		ExpiresOn:         reqValue.ExpiresOn,
+		ExtendedExpiresOn: reqValue.ExtendedExpiresOn,
+
+		IdToken:      reqValue.IdToken,
+		RefreshToken: reqValue.RefreshToken,
+		AccessToken:  reqValue.AccessToken,
+
+		Scopes: reqValue.Scopes,
+	}
+
+	return pca.base.AcquireTokenSilentNoCach(ctx, silentParameters, baseReqValues)
 }
 
 // AcquireTokenByUsernamePassword acquires a security token from the authority, via Username/Password Authentication.
